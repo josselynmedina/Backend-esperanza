@@ -5,8 +5,8 @@ exports.updateHabilidades = async function(req, res) {
 let insert =
   await pg.func('esperanzadb.ft_proc_actualiza_habilidad',
   [
-    req.body.id_habilidad,
-    req.body.activa
+    req.body[0].id_registro,
+    JSON.stringify(req.body)
   ]).catch(err => {
   res.status(500).send({
     error: err,
@@ -18,5 +18,5 @@ if (res.statusCode != 200) {
   return
 }
 
-res.send('update')
+res.send(insert[0]['ft_proc_actualiza_habilidad'])
 }

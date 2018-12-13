@@ -1,19 +1,11 @@
 const pg = require('../../Configuration/pg_connection')
 
 exports.crearVoluntario = async function(req, res) {
-
+  
   let insert =
-    await pg.func('esperanzadb.ft_proc_crear_voluntario',
+    await pg.func('esperanzadb.ft_proc_crear_voluntario_complete',
       [
-        req.body.nombre,
-        req.body.sexo,
-        req.body.correo,
-        req.body.direccion,
-        req.body.celular,
-        req.body.telefono,
-        req.body.fecha_nacimiento,
-        req.body.nombre.profesion,
-        req.body.id_estado_civil
+        JSON.stringify(req.body)
       ]).catch(err => {
         res.status(500).send({
           error: err,
@@ -25,7 +17,7 @@ if (res.statusCode != 200) {
   return
 }
 
-  res.send('Creacion de voluntario')
+  res.send('Creado con exito')
 }
 //
 // {

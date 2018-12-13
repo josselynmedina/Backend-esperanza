@@ -13,7 +13,7 @@ exports.updateVoluntario = async function(req, res) {
         req.body.celular,
         req.body.telefono,
         req.body.fecha_nacimiento,
-        req.body.nombre.profesion,
+        req.body.profesion,
         req.body.id_estado_civil
       ]).catch(err => {
         res.status(500).send({

@@ -1,8 +1,13 @@
 const pg = require('../../Configuration/pg_connection')
 
 exports.selectEventos = async function(req, res) {
+
   let eventos =
-    await pg.func('esperanzadb.ft_proc_get_eventos').catch(err => {
+    await pg.func('esperanzadb.ft_proc_get_eventos',
+    [
+      req.body.fecha_desde,
+      req.body.fecha_hasta
+    ]).catch(err => {
         res.status(500).send({
           error: err,
           status: 500

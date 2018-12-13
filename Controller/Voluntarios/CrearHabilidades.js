@@ -6,7 +6,8 @@ let insert =
   await pg.func('esperanzadb.ft_proc_crea_habilidades_voluntarios',
   [
     req.body.id_registro,
-    req.body.id_habilidad_conf
+    req.body.id_habilidad_conf,
+    req.body.comentario
   ]).catch(err => {
   res.status(500).send({
     error: err,
